@@ -1,9 +1,12 @@
 import os
 
+# to get the current directory path
 current_path = os.getcwd()
 
-items = os.listdir()
+# stores the items present in the directory
+directory_items = os.listdir()
 
+# function for creating a folder
 def createFolder(directory):
     try:
         if not os.path.exists(directory):
@@ -11,11 +14,13 @@ def createFolder(directory):
     except OSError:
         print('Error: Creating directory. '+ directory)
 
-# createFolder('./folder/')
-
+# stores file name in respective extension
 extension_dict = {}
+# Example :
+#  extension_dict = {'txt': [ 'sample', 'sample1'],'cpp': ['code1', 'code2']}
 
-for item in items:
+# adds data into extension_dict
+for item in directory_items:
     filename_list = item.split('.')
     ext = filename_list[-1]
     del filename_list[-1]
@@ -25,8 +30,7 @@ for item in items:
     else:
         extension_dict[ext] = [filename]
 
-print(extension_dict)
-
+# moves the files in their respective folders
 for item in extension_dict:
     folder_name = f'{item}-Folder'
     files = extension_dict[item]
